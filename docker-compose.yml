@@ -17,7 +17,7 @@ services:
       - MH_MAILDIR_PATH=/data
       - MH_STORAGE=maildir
     volumes:
-      - /home/staging/gateway/mailhog.auth:/mailhog.auth:ro
+      - /home/mailhog.auth:/mailhog.auth:ro
       - ./data:/data:rw      
       
 networks:
