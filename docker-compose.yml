@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  mailhog:
+    image: mailhog/mailhog
+    logging:
+      driver: 'none'  # disable saving logs
+    ports:
+      - 1025:1025 # smtp server
+      - 8025:8025 # web ui.
+    networks:
+      - mynet
+    environment:
+      #- VIRTUAL_HOST=smtp.domian.com
+      #- LETSENCRYPT_HOST=smtp.domain.com
+      #- VIRTUAL_PORT=8025      
+      - MH_AUTH_FILE=/mailhog.auth
+      - MH_MAILDIR_PATH=/data
+      - MH_STORAGE=maildir
+    volumes:
+      - /home/staging/gateway/mailhog.auth:/mailhog.auth:ro
+      - ./data:/data:rw      
+      
+networks:
+  mynet:
+    external: true
